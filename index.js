@@ -5,7 +5,7 @@ const fs = require('fs');
 const Employee = require('./lib/Employee');
 
 // question to set value for generated employee
-const emplyeePrompt = () => {
+const employeePrompt = () => {
     return inquirer
         .prompt([
             {
