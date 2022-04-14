@@ -2,7 +2,16 @@
 const inquirer = require('inquirer');
 const generateHTML = require('./')
 const fs = require('fs');
+
+//
 const Employee = require('./lib/Employee');
+const Manager = require('./lib/Manager');
+const Engineer = require('./lib/Engineer');
+const Intern = require('./lib/Intern');
+
+// create empty array to push employee object data into
+const teamArray = [];
+
 
 // question to set value for generated employee
 const employeePrompt = () => {
@@ -10,22 +19,22 @@ const employeePrompt = () => {
         .prompt([
             {
                 type: 'input',
-                name: 'managerName',
+                name: 'name',
                 message: "What is the team manager's name?"
             },
             {
                 type: 'input',
-                name: 'managerId',
+                name: 'id',
                 message: 'What is their eployee id?'
             },
             {
                 type: 'input',
-                name: 'managerEmail',
+                name: 'email',
                 message: 'What is thier email address',
             },
             {
                 type: 'input',
-                name: 'managerOfficeNumber',
+                name: 'officeNumber',
                 message: 'What is thier office number?'
             },
             {
@@ -37,14 +46,19 @@ const employeePrompt = () => {
         ])
 
         .then(managerData => {
+            const { name, id, email, officeNumber } = managerData;
+            const manager = new Manager(name, id, email, officeNumber);
+            
+            teamArray.push(manager);
+
             if (managerData.addEmployee === 'Engineer') {
-                return engineerPrompt()
+                return engineerPrompt(teamArray)
             }
             else if (managerData.addEmployee === 'Intern') {
-                return internPrompt()
+                return internPrompt(teamArray)
             }
             else {
-                return managerData;
+                return teamArray;
             }
         });
 };
@@ -81,14 +95,19 @@ const engineerPrompt = () => {
         ])
 
         .then(engineerData => {
+            const { name, id, email, officeNumber } = engineerData;
+            const engineer = new Engineer(name, id, email, officeNumber);
+            
+            teamArray.push(engineer);
+
             if (engineerData.addEmployee === 'Engineer') {
-                return engineerPrompt()
+                return engineerPrompt(teamArray)
             }
             else if (engineerData.addEmployee === 'Intern') {
-                return internPrompt()
+                return internPrompt(teamArray)
             }
             else {
-                return engineerData;
+                return teamArray;
             }
         });
 }
@@ -124,14 +143,19 @@ const internPrompt = () => {
     ])
 
     .then(internData => {
+        const { name, id, email, officeNumber } = internData;
+        const intern = new Intern(name, id, email, school);
+        
+        teamArray.push(intern);
+
         if (internData.addEmployee === 'Engineer') {
-            return engineerPrompt()
+            return engineerPrompt(teamArray)
         }
         else if (internData.addEmployee === 'Intern') {
-            return internPrompt()
+            return internPrompt(teamArray)
         }
         else {
-            return internData;
+            return teamArray;
         }
     });
 }
