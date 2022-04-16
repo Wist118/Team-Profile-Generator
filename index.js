@@ -33,12 +33,12 @@ const employeePrompt = () => {
             {
                 type: 'input',
                 name: 'email',
-                message: 'What is thier email address',
+                message: 'What is their email address',
             },
             {
                 type: 'input',
                 name: 'officeNumber',
-                message: 'What is thier office number?'
+                message: 'What is their office number?'
             },
             {
                 type: 'list',
@@ -83,7 +83,7 @@ const engineerPrompt = () => {
             {
                 type: 'input',
                 name: 'email',
-                message: 'What is thier email address'
+                message: 'What is their email address'
             },
             {
                 type: 'input',
@@ -132,7 +132,7 @@ const internPrompt = () => {
         {
             type: 'input',
             name: 'email',
-            message: 'What is thier email address'
+            message: 'What is their email address'
         },
         {
             type: 'input',

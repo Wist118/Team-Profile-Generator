@@ -1,0 +1,30 @@
+body {
+    color: white;
+}
+
+header {
+    text-align: center;
+    color: white;
+}
+
+.row {
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.role {
+    font-size: x-large ;
+}
+
+.name {
+    font-size: larger;
+    background-color: black;
+}
+
+ul {
+    background-color: darkgrey;
+}
+
+li {
+    padding: 10px 0;
+}
