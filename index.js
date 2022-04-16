@@ -9,6 +9,9 @@ const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 
+//
+const createPage = require('./src/generateHTML.js');
+
 // create empty array to push employee object data into
 const teamArray = [];
 
@@ -50,6 +53,7 @@ const employeePrompt = () => {
             const manager = new Manager(name, id, email, officeNumber);
             
             teamArray.push(manager);
+            console.log(manager);
 
             if (managerData.addEmployee === 'Engineer') {
                 return engineerPrompt(teamArray)
@@ -68,17 +72,17 @@ const engineerPrompt = () => {
         .prompt([
             {
                 type: 'input',
-                name: 'engineerName',
+                name: 'name',
                 message: 'What is the name of the Engineer?'
             },
             {
                 type: 'input',
-                name: 'engineerId',
+                name: 'id',
                 message: 'What is their employee id?'
             },
             {
                 type: 'input',
-                name: 'engineerEmail',
+                name: 'email',
                 message: 'What is thier email address'
             },
             {
@@ -95,10 +99,11 @@ const engineerPrompt = () => {
         ])
 
         .then(engineerData => {
-            const { name, id, email, officeNumber } = engineerData;
-            const engineer = new Engineer(name, id, email, officeNumber);
+            const { name, id, email, github } = engineerData;
+            const engineer = new Engineer(name, id, email, github);
             
             teamArray.push(engineer);
+            console.log(engineer);
 
             if (engineerData.addEmployee === 'Engineer') {
                 return engineerPrompt(teamArray)
@@ -116,17 +121,17 @@ const internPrompt = () => {
     return inquirer .prompt([
         {
             type: 'input',
-            name: 'internName',
+            name: 'name',
             message: 'What is the name of the Intern?'
         },
         {
             type: 'input',
-            name: 'internId',
+            name: 'id',
             message: 'What is their employee id?'
         },
         {
             type: 'input',
-            name: 'internEmail',
+            name: 'email',
             message: 'What is thier email address'
         },
         {
@@ -143,10 +148,11 @@ const internPrompt = () => {
     ])
 
     .then(internData => {
-        const { name, id, email, officeNumber } = internData;
+        const { name, id, email, school } = internData;
         const intern = new Intern(name, id, email, school);
         
         teamArray.push(intern);
+        console.log(intern);
 
         if (internData.addEmployee === 'Engineer') {
             return engineerPrompt(teamArray)
@@ -160,4 +166,20 @@ const internPrompt = () => {
     });
 }
 
-emplyeePrompt();
+employeePrompt()
+    .then(teamArray => {
+
+        fs.writeFile('./dist/index.html', createPage(teamArray), err => {
+            if (err) {
+                console.log(err);
+                return;
+            }
+            console.log('Created team page')
+            fs.copyFile('./src/style.css', './dist/style.css', err => {
+                if (err) {
+                    console.log(err);
+                    return;
+                }
+            })
+        })
+    })
