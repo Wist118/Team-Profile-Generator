@@ -38,9 +38,11 @@ const generateManager = manager => {
         <div class="text-center bg-danger role">Manager</div>
         <div class="text-center name">${manager.name}</div>
         <ul class="list-unstyled info">
-            <li>Email: ${manager.email}</li>
+            <li>
+                <a href="${manager.email}">Email: ${manager.email}</a>
+            </li>
             <li>Id number: ${manager.id}</li>
-            <li>Phone number: ${manager.officeNumber}</li>
+            <li>Office number: ${manager.officeNumber}</li>
         </ul>
     </div>
     `;
@@ -52,9 +54,13 @@ const generateEngineer = engineer => {
         <div class="text-center bg-success role">Engineer</div>
         <div class="text-center name">${engineer.name}</div>
         <ul class="list-unstyled info">
-            <li>Email: ${engineer.email}</li>
+        <li>
+            <a href="${engineer.email}">Email: ${engineer.email}</a>
+        </li>
             <li>Id number: ${engineer.id}</li>
-            <li>GitHub: ${engineer.github}</li>
+            <li>
+                <a href="https://github.com/${engineer.github}">GitHub: ${engineer.github}</a>
+            </li>
         </ul>
     </div>
     `;
@@ -66,7 +72,9 @@ const generateIntern = intern => {
         <div class="text-center bg-info role">Intern</div>
         <div class="text-center name">${intern.name}</div>
         <ul class="list-unstyled info">
-            <li>Email: ${intern.email}</li>
+        <li>
+            <a href="${intern.email}">Email: ${intern.email}</a>
+        </li>
             <li>Id number: ${intern.id}</li>
             <li>School: ${intern.school}</li>
         </ul>
