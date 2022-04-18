@@ -13,7 +13,7 @@
   
 
   ## Installation  
-  Must have "inquirer" package installed
+  Must have "inquirer" package installed  
   Must have "jest" package installed for testing
 
   ## Usage  
