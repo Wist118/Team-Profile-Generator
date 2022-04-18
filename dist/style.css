@@ -7,6 +7,9 @@ header {
     color: white;
 }
 
+a {
+    color: white;
+}
 
 .row {
     justify-content: space-between;
