@@ -16,7 +16,7 @@ const createPage = require('./src/generateHTML.js');
 const teamArray = [];
 
 
-// question to set value for generated employee
+// question prompt to set value for generated manager
 const employeePrompt = () => {
     return inquirer
         .prompt([
@@ -81,7 +81,7 @@ const employeePrompt = () => {
                 choices: ['Engineer', 'Intern', 'No'],
             }
         ])
-
+        // destructure values then make a new manager and push it to the teamArray then prompt user if they would like to add a new employee
         .then(managerData => {
             const { name, id, email, officeNumber } = managerData;
             const manager = new Manager(name, id, email, officeNumber);
@@ -101,6 +101,7 @@ const employeePrompt = () => {
         });
 };
 
+// question prompt to set value for generated engineer
 const engineerPrompt = () => {
     return inquirer
         .prompt([
@@ -124,7 +125,12 @@ const engineerPrompt = () => {
                 validate: idInput => {
                     if (isNaN(idInput) === false) {
                       return true;
-                    } else {
+                    } 
+                    else if (!idInput) {
+                        console.log("Please enter an id number!");
+                        return false; 
+                    }
+                    else {
                       console.log("Please enter an id number!");
                       return false;
                     }
@@ -164,7 +170,7 @@ const engineerPrompt = () => {
                 choices: ['Engineer', 'Intern', 'No']
             }
         ])
-
+        // destructure values then make a new engineer and push it to the teamArray then prompt user if they would like to add a new employee
         .then(engineerData => {
             const { name, id, email, github } = engineerData;
             const engineer = new Engineer(name, id, email, github);
@@ -184,6 +190,7 @@ const engineerPrompt = () => {
         });
 }
 
+// question prompt to set value for generated intern
 const internPrompt = () => {
     return inquirer .prompt([
         {
@@ -246,7 +253,7 @@ const internPrompt = () => {
             choices: ['Engineer', 'Intern', 'No']
         }
     ])
-
+    // destructure values then make a new intern and push it to the teamArray then prompt user if they would like to add a new employee
     .then(internData => {
         const { name, id, email, school } = internData;
         const intern = new Intern(name, id, email, school);
@@ -265,7 +272,7 @@ const internPrompt = () => {
         }
     });
 }
-
+// function call to generate html page with teamArray values and copy css for styling
 employeePrompt()
     .then(teamArray => {
 

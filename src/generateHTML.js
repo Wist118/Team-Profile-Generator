@@ -1,7 +1,7 @@
 createPage = (data) => {
 
     pageArr = [];
-
+    // loop through array and run function based on what the employee role is then push employee to array
     for (let i = 0; i < data.length; i ++) {
         const employee = data[i];
         const role = employee.getRole();
@@ -31,7 +31,7 @@ createPage = (data) => {
     return generateEmployee;
 }
 
-
+// function to generate manager to html with values from the question prompt
 const generateManager = manager => {
     return `
     <div class="col-3 manager">
@@ -39,7 +39,7 @@ const generateManager = manager => {
         <div class="text-center name">${manager.name}</div>
         <ul class="list-unstyled info">
             <li>
-                <a href="${manager.email}">Email: ${manager.email}</a>
+                <a href="mailto:${manager.email}">Email: ${manager.email}</a>
             </li>
             <li>Id number: ${manager.id}</li>
             <li>Office number: ${manager.officeNumber}</li>
@@ -48,6 +48,7 @@ const generateManager = manager => {
     `;
 };
 
+// function to generate engineer to html with values from the question prompt
 const generateEngineer = engineer => {
     return `
     <div class="col-3 engineer">
@@ -55,7 +56,7 @@ const generateEngineer = engineer => {
         <div class="text-center name">${engineer.name}</div>
         <ul class="list-unstyled info">
         <li>
-            <a href="${engineer.email}">Email: ${engineer.email}</a>
+            <a href="mailto:${engineer.email}">Email: ${engineer.email}</a>
         </li>
             <li>Id number: ${engineer.id}</li>
             <li>
@@ -66,6 +67,7 @@ const generateEngineer = engineer => {
     `;
 };
 
+// function to generate intern to html with values from the question prompt
 const generateIntern = intern => {
     return `
     <div class="col-3 intern">
@@ -73,7 +75,7 @@ const generateIntern = intern => {
         <div class="text-center name">${intern.name}</div>
         <ul class="list-unstyled info">
         <li>
-            <a href="${intern.email}">Email: ${intern.email}</a>
+            <a href="mailto:${intern.email}">Email: ${intern.email}</a>
         </li>
             <li>Id number: ${intern.id}</li>
             <li>School: ${intern.school}</li>
@@ -82,6 +84,7 @@ const generateIntern = intern => {
     `;
 };
 
+// function to generate html with each employee 
 const generateHTML = function (cardArray) {
     return `
     <!DOCTYPE html>
